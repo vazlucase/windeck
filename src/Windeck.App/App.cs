@@ -20,7 +20,7 @@ public sealed class App : Application
                 foreach(var monitor in monitors){var window=new DeckWindow(runtime,monitor.Info,monitor.Scale);runtime.Windows.Add(window);window.Show();}
                 await runtime.StartAsync();
             };return app.Run();}
-        catch(Exception e){Recovery.Restore();Log(e);MessageBox.Show("O Windeck não conseguiu iniciar. A barra original foi restaurada.\n\n"+e.Message,"Windeck");return 1;}
+        catch(Exception e){Recovery.Restore();Log(e);if(!args.Contains("--verify-layouts"))MessageBox.Show("O Windeck não conseguiu iniciar. A barra original foi restaurada.\n\n"+e.Message,"Windeck");return 1;}
         finally{instance.ReleaseMutex();instance.Dispose();}
     }
     public App(bool verification=false)
