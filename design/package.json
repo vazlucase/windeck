@@ -1,0 +1,1 @@
+{"name":"windeck-design-checks","version":"0.1.0","private":true,"scripts":{"test":"node check-preview.cjs"},"devDependencies":{"playwright":"1.58.2"}}

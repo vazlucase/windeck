@@ -1,0 +1,24 @@
+using System.Text.Json;
+using Windeck.Core;
+int passed=0,failed=0;
+void Test(string name,Action body){try{body();Console.WriteLine("PASS "+name);passed++;}catch(Exception e){Console.WriteLine("FAIL "+name+": "+e.Message);failed++;}}
+void Assert(bool condition,string message="Assertion failed"){if(!condition)throw new Exception(message);}
+var surface=new SurfaceRect(500,10,190,40);
+Test("Hover requires dwell; near-edge noise does not open",()=>{var c=new IslandController();c.Update(new(600,20,0),surface);Assert(c.State==IslandState.Rest);c.Update(new(600,20,.1),surface);Assert(c.State==IslandState.Rest);c.Update(new(600,20,.15),surface);Assert(c.State==IslandState.Peek);});
+Test("Leaving the expanded hover area collapses after delay",()=>{var c=new IslandController();c.Update(new(600,20,0),surface);c.Update(new(600,20,.2),surface);c.Update(new(100,400,.3),surface);Assert(c.State==IslandState.Peek);c.Update(new(100,400,.76),surface);Assert(c.State==IslandState.Rest);});
+Test("A directed upward strike expands without a click",()=>{var c=new IslandController();c.Update(new(595,290,0),surface);c.Update(new(595,210,.05),surface);c.Update(new(595,130,.1),surface);Assert(c.State==IslandState.Expanded);});
+Test("Fast horizontal movement does not trigger a strike",()=>{var c=new IslandController();c.Update(new(100,120,0),surface);c.Update(new(600,110,.03),surface);Assert(c.State!=IslandState.Expanded);});
+Test("Fast downward movement does not trigger a strike",()=>{var c=new IslandController();c.Update(new(595,120,0),surface);c.Update(new(595,260,.04),surface);Assert(c.State!=IslandState.Expanded);});
+Test("Strikes outside the horizontal corridor are ignored",()=>{var c=new IslandController();c.Update(new(1200,290,0),surface);c.Update(new(1200,120,.05),surface);Assert(c.State!=IslandState.Expanded);});
+Test("Long gaps cannot create phantom velocity",()=>{var c=new IslandController();c.Update(new(595,300,0),surface);c.Update(new(595,100,2),surface);Assert(c.State!=IslandState.Expanded);});
+Test("Suppression prevents gestures over fullscreen applications",()=>{var c=new IslandController();c.Update(new(595,300,0),surface,true);c.Update(new(595,100,.05),surface,true);Assert(c.State==IslandState.Rest);});
+Test("Disabled gesture preference still allows click expansion",()=>{var c=new IslandController{GesturesEnabled=false};c.Update(new(595,300,0),surface);c.Update(new(595,100,.05),surface);Assert(c.State==IslandState.Rest);c.Expand(DeckPage.Tray);Assert(c.State==IslandState.Expanded&&c.Page==DeckPage.Tray);});
+Test("Expanded page survives pointer leave until explicitly dismissed",()=>{var c=new IslandController();c.Expand(DeckPage.Media);c.Update(new(100,700,0),surface);c.Update(new(100,700,2),surface);Assert(c.State==IslandState.Expanded);c.Collapse();Assert(c.State==IslandState.Rest);});
+Test("Spring remains bounded under irregular frame timing",()=>{var s=new MotionSpring(190){Target=1140};foreach(double dt in Enumerable.Range(0,400).Select(i=>i%3==0?.12:1d/144)){double v=s.Step(dt);Assert(double.IsFinite(v)&&v>=189.9&&v<=1140.1);}Assert(s.Settled);});
+Test("Spring converges at both 30Hz and 144Hz",()=>{foreach(double fps in new[]{30d,144d}){var s=new MotionSpring(0){Target=600};for(int i=0;i<fps*3;i++)s.Step(1/fps);Assert(Math.Abs(s.Value-600)<.01);}});
+Test("A reduced-motion setting snaps to target",()=>{var s=new MotionSpring(40){Target=610};Assert(s.Step(.016,true)==610&&s.Velocity==0);});
+Test("Direction changes retarget springs without discontinuities",()=>{var s=new MotionSpring(190){Target=1140};for(int i=0;i<8;i++)s.Step(.016);double before=s.Value;s.Target=190;Assert(s.Value==before);for(int i=0;i<300;i++)s.Step(.016);Assert(s.Settled&&Math.Abs(s.Value-190)<.1);});
+Test("Preferences reject invalid theme and sensitivity values",()=>{var p=Preferences.Normalize(new(){Theme="missing",StrikeSpeed=double.NaN,WeatherCountry="br"});Assert(p.Theme=="Fluent"&&p.StrikeSpeed==1100&&p.WeatherCountry=="BR");});
+Test("Settings round-trip pins, reminders, monitor and reduced motion",()=>{string dir=Path.Combine(Path.GetTempPath(),"windeck-check-"+Guid.NewGuid());try{var p=new Preferences{Theme="Dock",ReduceMotion=true,Pins=[new("Configurações","ms-settings:")],Reminders=[new(Guid.NewGuid(),DateTime.Today.AddHours(9),"Reunião")],Monitor="DISPLAY2"};string file=Path.Combine(dir,"settings.json");p.Save(file);var q=Preferences.Load(file);Assert(q.Theme=="Dock"&&q.ReduceMotion&&q.Pins[0].Target=="ms-settings:"&&q.Reminders[0].Text=="Reunião"&&q.Monitor=="DISPLAY2");Assert(!File.Exists(file+".new"));}finally{Directory.Delete(dir,true);}});
+Test("Corrupt settings recover to defaults",()=>{string file=Path.GetTempFileName();try{File.WriteAllText(file,"{bad json");Assert(Preferences.Load(file).WeatherCity=="Belém");}finally{File.Delete(file);}});
+Console.WriteLine($"RESULT {passed} passed, {failed} failed");return failed==0?0:1;

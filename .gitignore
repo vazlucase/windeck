@@ -1,0 +1,8 @@
+**/bin/
+**/obj/
+.packages/
+artifacts/
+*.log
+.vs/
+**/node_modules/
+design/test-results/

@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0-windows10.0.19041": {
+      "ManagedShell": {
+        "type": "Direct",
+        "requested": "[0.0.374, )",
+        "resolved": "0.0.374",
+        "contentHash": "hsvU/JkLBzFpxR14exqPQ0zMY1r5BnqwnS+XijzJl0TnbIQx8unX1lyawtswbxRLhRNEmeZKHCA+fHprPQqhaw==",
+        "dependencies": {
+          "System.Data.OleDb": "8.0.1",
+          "System.ServiceProcess.ServiceController": "8.0.1"
+        }
+      },
+      "System.Data.OleDb": {
+        "type": "Direct",
+        "requested": "[10.0.0, )",
+        "resolved": "10.0.0",
+        "contentHash": "RNMeXzizr/mXKZ0hjM9ANcSLveTWLOiiTj/kbmeobNAoV6uVz7H8JMISajSN6qtnBv4XXKTNimIa69YqIljREA==",
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "10.0.0",
+          "System.Diagnostics.PerformanceCounter": "10.0.0"
+        }
+      },
+      "System.Configuration.ConfigurationManager": {
+        "type": "Transitive",
+        "resolved": "10.0.0",
+        "contentHash": "0B+BzJ6pPMrRzJrVsttKf9MfDj6Syw9xoY+agcS9VssYQali1446+jTf5v1K94AMFUBxLXqDZlaTjO5edaI3jA==",
+        "dependencies": {
+          "System.Diagnostics.EventLog": "10.0.0",
+          "System.Security.Cryptography.ProtectedData": "10.0.0"
+        }
+      },
+      "System.Diagnostics.EventLog": {
+        "type": "Transitive",
+        "resolved": "10.0.0",
+        "contentHash": "uaFRda9NjtbJRkdx311eXlAA3n2em7223c1A8d1VWyl+4FL9vkG7y2lpPfBU9HYdj/9KgdRNdn1vFK8ZYCYT/A=="
+      },
+      "System.Diagnostics.PerformanceCounter": {
+        "type": "Transitive",
+        "resolved": "10.0.0",
+        "contentHash": "ZnhizmMstYa05UNuwiMew7EsGApEy6qBcvBBSxoUcaX8WvkE2pb+iQyRWyQZ8E0mq7PlPBjwVh4+6ie+B6oeZA==",
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "10.0.0"
+        }
+      },
+      "System.Security.Cryptography.ProtectedData": {
+        "type": "Transitive",
+        "resolved": "10.0.0",
+        "contentHash": "qy6C3gQRTrfhFfuiIYU1jNwWfFdJpBVo1BARW7jgMm1zTEm3LRzLLyOLJGaAuKE+nZCGkEP71y4rj9NWjqLGdQ=="
+      },
+      "System.ServiceProcess.ServiceController": {
+        "type": "Transitive",
+        "resolved": "8.0.1",
+        "contentHash": "02I0BXo1kmMBgw03E8Hu4K6nTqur4wpQdcDZrndczPzY2fEoGvlinE35AWbyzLZ2h2IksEZ6an4tVt3hi9j1oA=="
+      },
+      "windeck.core": {
+        "type": "Project"
+      }
+    },
+    "net10.0-windows10.0.19041/win-x64": {
+      "System.Data.OleDb": {
+        "type": "Direct",
+        "requested": "[10.0.0, )",
+        "resolved": "10.0.0",
+        "contentHash": "RNMeXzizr/mXKZ0hjM9ANcSLveTWLOiiTj/kbmeobNAoV6uVz7H8JMISajSN6qtnBv4XXKTNimIa69YqIljREA==",
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "10.0.0",
+          "System.Diagnostics.PerformanceCounter": "10.0.0"
+        }
+      },
+      "System.Diagnostics.EventLog": {
+        "type": "Transitive",
+        "resolved": "10.0.0",
+        "contentHash": "uaFRda9NjtbJRkdx311eXlAA3n2em7223c1A8d1VWyl+4FL9vkG7y2lpPfBU9HYdj/9KgdRNdn1vFK8ZYCYT/A=="
+      },
+      "System.Diagnostics.PerformanceCounter": {
+        "type": "Transitive",
+        "resolved": "10.0.0",
+        "contentHash": "ZnhizmMstYa05UNuwiMew7EsGApEy6qBcvBBSxoUcaX8WvkE2pb+iQyRWyQZ8E0mq7PlPBjwVh4+6ie+B6oeZA==",
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "10.0.0"
+        }
+      },
+      "System.ServiceProcess.ServiceController": {
+        "type": "Transitive",
+        "resolved": "8.0.1",
+        "contentHash": "02I0BXo1kmMBgw03E8Hu4K6nTqur4wpQdcDZrndczPzY2fEoGvlinE35AWbyzLZ2h2IksEZ6an4tVt3hi9j1oA=="
+      }
+    }
+  }
+}

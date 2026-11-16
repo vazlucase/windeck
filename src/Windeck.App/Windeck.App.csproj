@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType><TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <UseWPF>true</UseWPF><AssemblyName>Windeck</AssemblyName><RootNamespace>Windeck</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest><ApplicationIcon>Assets/windeck.ico</ApplicationIcon>
+    <Version>0.1.0-alpha.1</Version><Company>Windeck</Company><Product>Windeck</Product>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+  <ItemGroup><ProjectReference Include="../Windeck.Core/Windeck.Core.csproj"/><PackageReference Include="ManagedShell" Version="0.0.374"/><PackageReference Include="System.Data.OleDb" Version="10.0.0"/></ItemGroup>
+</Project>
