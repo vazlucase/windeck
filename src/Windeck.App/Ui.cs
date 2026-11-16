@@ -46,7 +46,7 @@ internal static class Ui
         Theme(resources,"Fluent");
         const string styles="""
         <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-          <Style TargetType="TextBlock"><Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/><Setter Property="Foreground" Value="{DynamicResource Text}"/></Style>
+          <Style TargetType="TextBlock"><Setter Property="Foreground" Value="{DynamicResource Text}"/></Style>
           <Style TargetType="Button">
             <Setter Property="Foreground" Value="{DynamicResource Text}"/><Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="12,9"/><Setter Property="Margin" Value="3"/><Setter Property="Cursor" Value="Hand"/><Setter Property="FontSize" Value="13"/>

@@ -2,11 +2,12 @@
 
 O objetivo do produto é substituir a barra inteira. **Inventário não significa
 homologação.** “Implementado” abaixo significa que há código e integração;
-a execução desses itens ainda não foi verificada em um Windows real nesta entrega.
+a homologação interativa desses itens permanece pendente. O CI Windows verifica
+a inicialização e a renderização das oito páginas WPF nos dois temas.
 
 | Recurso | Implementação nesta alpha | Situação / limite |
 | --- | --- | --- |
-| Executável independente | .NET 10/WPF, distribuição autocontida x64 | Build executado; GUI Windows pendente. |
+| Executável independente | .NET 10/WPF, distribuição autocontida x64 | Build e inicialização da GUI verificados em Windows CI. |
 | Substituição visual da barra | Oculta a barra do Explorer após armar recuperação | Não modifica o shell de login. |
 | Área de trabalho e Explorador | Explorer continua executando | Fornecidos pelo Windows. |
 | Aproximação, olhos e clique | Máquina de estados, cursor global, molas analíticas | Núcleo testado; entrada nativa pendente. |

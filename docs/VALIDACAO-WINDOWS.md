@@ -2,13 +2,14 @@
 
 ## Evidência já obtida
 
-- Build Release Windows x64 e publicação autocontida executados em Linux.
-- Núcleo: 17 verificações executadas.
+- Build Release Windows x64 e publicação autocontida executados em Windows CI.
+- Núcleo: 17 verificações executadas em Linux e Windows.
+- Inicialização e 16 renderizações reais WPF no CI Windows, sem ativar substituição.
 - Prévia visual: oito telas, dois temas, navegação, hover, clique, Escape,
   play/pause ilustrativo, quatro larguras e ausência de erros JavaScript.
 
-**Não executado:** GUI WPF, shell, COM de áudio, WinRT de mídia, callback de
-bandeja, fullscreen e recuperação dentro de uma instalação Windows.
+**Não homologado:** uso interativo do shell, COM de áudio, WinRT de mídia,
+callbacks de bandeja, fullscreen e recuperação na sessão de um usuário Windows.
 
 ## Preparação
 

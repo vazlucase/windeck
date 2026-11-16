@@ -26,6 +26,7 @@ internal static class LayoutVerification
                 if(monitor.Info.Monitor.Width<=0)throw new InvalidOperationException("A sessão Windows não possui monitor.");
                 var window=new DeckWindow(runtime,monitor.Info,monitor.Scale);
                 runtime.Windows.Add(window);window.Show();
+                await runtime.StartAsync().WaitAsync(TimeSpan.FromSeconds(45));
                 await Dispatcher.Yield(DispatcherPriority.ApplicationIdle);
                 var files=new List<string>();
                 foreach(string theme in new[]{"Fluent","Dock"}){
@@ -39,6 +40,7 @@ internal static class LayoutVerification
                 File.WriteAllText(Path.Combine(output,"verification.json"),JsonSerializer.Serialize(new{
                     status="passed",kind="native-wpf-layout-smoke-test",os=Environment.OSVersion.ToString(),
                     replacementEnabled=runtime.Desktop.Replacing,layouts=files,
+                    catalogApps=runtime.Catalog.Count,
                     trayInitializationError=runtime.Desktop.Error,
                     note="Construction and rendering only; interactive taskbar parity is not certified."
                 },new JsonSerializerOptions{WriteIndented=true}));

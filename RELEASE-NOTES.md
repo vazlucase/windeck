@@ -12,8 +12,11 @@ identificador de sessão e atalho de emergência.
 
 ## Estado da verificação
 
-Compilado para Windows x64. Testes do núcleo e prévia visual executados em Linux.
-As integrações nativas não foram executadas nesta máquina.
+Compilado e publicado para Windows x64 pelo GitHub Actions. As 17 verificações
+do núcleo passaram em Windows e Linux. A inicialização e a renderização das
+oito páginas WPF nos dois temas são verificadas em Windows, sem ativar a
+substituição. A prévia visual foi verificada com Playwright em Linux.
+Os cenários de uso interativo das integrações ainda precisam de homologação.
 
 ## Limites que impedem declarar paridade completa
 

@@ -10,9 +10,9 @@ clique ou um gesto rápido para cima abre o espaço de trabalho. Dois temas:
 
 **Estado: alpha 0.1.0.** Há um aplicativo Windows compilado, serviços reais de
 janelas e bandeja, e uma prévia interativa dos layouts. Esta entrega não é uma
-substituição com paridade de 100% já homologada. As integrações precisam de
-execução e validação em Windows; o ambiente de desenvolvimento desta entrega
-é Linux. Consulte [a matriz de paridade](docs/PARIDADE.md) antes de tratar o
+substituição com paridade de 100% já homologada. A inicialização e os layouts
+WPF são verificados em Windows pelo GitHub Actions; o uso das integrações
+precisa de validação interativa. Consulte [a matriz de paridade](docs/PARIDADE.md) antes de tratar o
 Windeck como substituto definitivo.
 
 ## Executar
@@ -128,12 +128,13 @@ substituição; não certifica os callbacks da bandeja ou os gestos na sessão d
 
 ## Verificação desta entrega
 
-- Build Release Windows: sem erros e sem avisos.
-- 17 verificações executadas do núcleo de gestos, molas e persistência.
+- Build Release executado em Windows, com publicação autocontida.
+- 17 verificações executadas do núcleo de gestos, molas e persistência em Linux e Windows.
+- Inicialização da GUI e renderização dos oito painéis WPF nos dois temas pelo CI Windows.
 - Prévia de oito layouts e dois temas testada com Chromium/Playwright.
 - Interações da prévia e larguras 1440, 1024, 768 e 390 verificadas.
-- APIs nativas, recuperação, bandeja, múltiplos monitores e acessibilidade:
-  código presente, execução em Windows pendente.
+- Uso interativo de recuperação, callbacks de bandeja, múltiplos monitores e
+  acessibilidade: código presente, homologação pendente.
 
 Veja [arquitetura](docs/ARQUITETURA.md), [plano de validação](docs/VALIDACAO-WINDOWS.md)
 e [fontes da pesquisa](docs/PESQUISA.md).
